@@ -3,8 +3,7 @@ import {
   Component,
   Input,
   OnChanges, OnDestroy,
-  SimpleChanges,
-  ViewEncapsulation
+  SimpleChanges
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { takeWhile } from 'rxjs/operators';
@@ -16,14 +15,13 @@ import { MockService } from '../../mock.service';
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductDetailsComponent implements OnChanges, OnDestroy {
   @Input() product: AbstractProduct = null;
   editForm: FormGroup;
   now: Date = new Date();
-  private alive: boolean = true;
+  private alive = true;
 
   constructor(private fb: FormBuilder,
               private mockService: MockService) {

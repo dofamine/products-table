@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { MatProgressSpinnerModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
-import { SpinnerComponent } from "./spiner";
-import { MatProgressSpinnerModule } from "@angular/material";
+
+import { SpinnerComponent } from './spiner';
 
 @NgModule({
   declarations: [

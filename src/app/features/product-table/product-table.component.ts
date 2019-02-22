@@ -2,8 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Input, Output,
-  ViewEncapsulation } from '@angular/core';
+  Input, Output
+} from '@angular/core';
 
 import { AbstractProduct } from '../../shared/models';
 
@@ -12,7 +12,6 @@ import { AbstractProduct } from '../../shared/models';
   templateUrl: './product-table.component.html',
   styleUrls: ['./product-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
 })
 export class ProductTableComponent {
   @Input() products: AbstractProduct[];

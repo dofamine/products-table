@@ -1,25 +1,24 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import { Observable } from "rxjs";
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { MockService } from "../../mock.service";
-import { AbstractProduct, SearchObject } from "../../shared/models";
+import { MockService } from '../../mock.service';
+import { AbstractProduct, SearchObject } from '../../shared/models';
 
 @Component({
   selector: 'app-product-filters',
   templateUrl: './product-filters.component.html',
   styleUrls: ['./product-filters.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductFiltersComponent implements OnInit {
   @ViewChild('price') priceX: ElementRef<HTMLInputElement>;
-  isVisible: boolean = false;
+  isVisible = false;
   searchForm: FormGroup;
   products: Observable<AbstractProduct[]>;
-  private searchDelayTime: number = 700;
-  private minLengthSearch: number = 3;
+  private searchDelayTime = 700;
+  private minLengthSearch = 3;
 
   constructor(private mockService: MockService,
               private fb: FormBuilder) {
@@ -77,7 +76,7 @@ export class ProductFiltersComponent implements OnInit {
     control.valueChanges.pipe(
       debounceTime(this.searchDelayTime),
       distinctUntilChanged()
-    ).subscribe(this.submit.bind(this))
+    ).subscribe(this.submit.bind(this));
   }
 
   private formToSearchObject(): SearchObject {

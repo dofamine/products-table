@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { catchError, delay, switchMap, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 
-import { SearchObject } from "./shared/models";
-import { products } from './shared/data';
+import { SearchObject } from './shared/models';
+import { dataProducts } from './shared/data';
 import { AbstractProduct } from './shared/models';
-import { SpinnerService } from "./spinner.service";
+import { SpinnerService } from './spinner.service';
 
 @Injectable()
 export class MockService {
   private productsData: AbstractProduct[] = [];
   private productsStream: BehaviorSubject<AbstractProduct[]> = new BehaviorSubject<AbstractProduct[]>(this.productsData);
   private daysMilliseconds: number = 24 * 60 * 1000 * 60 - 1;
+  private delay = 1500;
 
   constructor(private spinnerService: SpinnerService) {
   }
@@ -21,12 +22,12 @@ export class MockService {
   }
 
   getProducts(): Observable<AbstractProduct[]> {
-    return of(products).pipe(
+    return of(dataProducts).pipe(
       tap(() => this.spinnerService.run()),
-      delay(1500),
+      delay(this.delay),
       tap((data) => {
         this._products = data;
-        this.spinnerService.stop()
+        this.spinnerService.stop();
       })
     );
   }
@@ -47,7 +48,7 @@ export class MockService {
   updateProduct(product: AbstractProduct): Observable<any> {
     return of(product).pipe(
       tap(() => this.spinnerService.run()),
-      delay(2000),
+      delay(this.delay),
       switchMap((data) => data.price > 1000 ? throwError('price can not be more than 1000') : of(data)),
       tap((data) => {
         this._products = this.productsData.map(elem => elem.id === data.id ? { ...elem, ...data } : elem);
@@ -55,9 +56,9 @@ export class MockService {
       }),
       catchError((err) => {
         this.spinnerService.stop();
-        return of(err);
+        return throwError(err);
       })
-    )
+    );
   }
 
   private set _products(data: AbstractProduct[]) {
@@ -68,7 +69,7 @@ export class MockService {
   private filterBySearchString(products: AbstractProduct[], searchString: string): AbstractProduct[] {
     const regExp = new RegExp(searchString, 'gi');
     return products.filter(({ description: d, title: t }) =>
-      ~d.search(regExp) || ~t.search(regExp))
+      d.search(regExp) !== -1 || t.search(regExp) !== -1);
   }
 
   private filterByDate(products: AbstractProduct[], searchDate: number): AbstractProduct[] {

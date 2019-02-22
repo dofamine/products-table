@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
-import { SpinnerService } from "../../../spinner.service";
+import { SpinnerService } from '../../../spinner.service';
 
 @Component({
   selector: 'app-spinner',
