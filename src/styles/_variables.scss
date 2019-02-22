@@ -1,0 +1,17 @@
+@import "~@angular/material/theming";
+
+// ***COLORS***
+$color-violet: #8B5A9F;
+$color-whisper: #F0E9F2;
+$color-bg_gray: #F5F5F5;
+$color-white: #FFFFFF;
+$color-gray_light: #CCCCCC;
+$color-gray: #999999;
+$color-gray_dark: #464547;
+$color-alto: #D8D6D6;
+$color-white-opacity: rgba(255, 255, 255, 0.3);
+
+// ***MATERIAL VARIABLES***
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);

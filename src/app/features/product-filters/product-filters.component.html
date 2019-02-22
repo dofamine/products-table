@@ -1,0 +1,40 @@
+<form class="control-panel" novalidate [formGroup]="searchForm">
+  <div class="control-panel__top">
+    <div class="control-panel__total">
+      <span>{{(products | async).length | totalMessage}}</span>
+    </div>
+    <div class="control-panel__search">
+      <mat-form-field>
+        <input matInput
+               placeholder="search"
+               type="search"
+               name="searchString"
+               formControlName="searchString">
+      </mat-form-field>
+    </div>
+  </div>
+  <div [className]="toggleFilterClass">
+    <div class="control-panel__filter-toggle" (click)="toggleFiltersVisibility()">More filters</div>
+    <div class="control-panel__filters-clear" (click)="clearFilters()">Clear filters</div>
+    <div class="control-panel__bot">
+      <mat-form-field>
+        <input matInput
+               placeholder="Max price"
+               type="number"
+               name="price"
+               formControlName="price">
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Delivery date"
+          name="date"
+          formControlName="date"
+          (dateChange)="submit()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+</form>

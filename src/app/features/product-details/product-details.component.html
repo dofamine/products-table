@@ -1,0 +1,56 @@
+<ng-container *ngIf="product">
+  <header>
+    <h2 class="header">Product identification number: {{product.id}}</h2>
+  </header>
+  <form class="edit-product" novalidate [formGroup]="editForm" (keyup.enter)="submit()">
+    <mat-form-field>
+      <input matInput
+             placeholder="Title"
+             type="text"
+             name="title"
+             formControlName="title">
+      <mat-error *ngIf="title.hasError('required')">
+        Title is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+             placeholder="Price"
+             type="number"
+             name="price"
+             formControlName="price">
+      <mat-error *ngIf="price.hasError('required')">
+        Price is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput
+                placeholder="Description"
+                formControlName="description"
+      ></textarea>
+      <mat-error *ngIf="description.hasError('required')">
+        Description is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Delivery date"
+        name="date"
+        [min]="now"
+        formControlName="date"
+      >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="date.hasError('required')">
+        Delivery date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</ng-container>
+

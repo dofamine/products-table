@@ -1,0 +1,37 @@
+<div class="product-table mat-elevation-z8">
+  <mat-table [dataSource]="products" [trackBy]="getUniqueId">
+
+    <ng-container cdkColumnDef="id">
+      <mat-header-cell *cdkHeaderCellDef> id</mat-header-cell>
+      <mat-cell *cdkCellDef="let product"> {{product.id}}</mat-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="title">
+      <mat-header-cell *cdkHeaderCellDef> title</mat-header-cell>
+      <mat-cell *cdkCellDef="let product"> {{product.title}}</mat-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="description">
+      <mat-header-cell *cdkHeaderCellDef> description</mat-header-cell>
+      <mat-cell *cdkCellDef="let product">
+        <span class="product-table__description">{{product.description}}</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="price">
+      <mat-header-cell *cdkHeaderCellDef> price</mat-header-cell>
+      <mat-cell *cdkCellDef="let product"> {{product.price | currency }}</mat-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="date">
+      <mat-header-cell *cdkHeaderCellDef> date</mat-header-cell>
+      <mat-cell *cdkCellDef="let product"> {{product.date | date: 'M/d/yyyy'}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *cdkHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *cdkRowDef="let product; columns: displayedColumns;"
+             (click)="setActiveProduct(product.id)"
+             [ngClass]="{'active': activeId === product.id}"
+    ></mat-row>
+  </mat-table>
+</div>

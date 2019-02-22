@@ -1,0 +1,19 @@
+@import "main-styles";
+
+.content {
+  @include display-flex();
+  min-width: 1024px;
+  padding: 20px 40px;
+  height: 100vh;
+  background-color: $color-bg_gray;
+
+
+  &__left-side {
+    width: 55%;
+    overflow: auto;
+  }
+
+  &__right-side {
+    flex: 0 0 40%;
+  }
+}

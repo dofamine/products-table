@@ -1,0 +1,86 @@
+@import "main-styles";
+
+.control-panel {
+  min-width: 150px;
+  width: 100%;
+  padding: 0 20px;
+
+  &__top {
+    @include display-flex(space-between, center);
+  }
+
+  &__search {
+    flex: 0 0 30%;
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  &__total {
+    font-size: 1.5rem;
+    color: $color-violet;
+  }
+
+  &__bot {
+    @include display-flex();
+    transition: all .2s ease-in-out;
+
+    mat-form-field {
+      margin-right: 20px;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__filters {
+
+    &--show {
+
+      .control-panel__bot {
+        max-height: 100px;
+        visibility: visible;
+      }
+
+      .control-panel__filter-toggle {
+
+        &:before {
+          @include triangle-looks-to-top($color-gray);
+        }
+      }
+    }
+
+    &--hide {
+
+      .control-panel__bot {
+        max-height: 0;
+        visibility: hidden;
+      }
+
+      .control-panel__filter-toggle {
+
+        &:before {
+          @include triangle-looks-to-bot($color-gray);
+        }
+      }
+    }
+  }
+
+  &__filter-toggle {
+    @include common-button();
+    margin: 10px 0;
+
+    &:before {
+      @include triangle-looks-to-bot($color-gray);
+      top: 0.7em;
+      left: 0.5em;
+    }
+  }
+
+  &__filters-clear {
+    @include common-button();
+    margin-left: 10px;
+  }
+}

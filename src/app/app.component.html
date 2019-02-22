@@ -1,0 +1,13 @@
+<div class="content">
+  <section class="content__left-side">
+    <app-product-filters></app-product-filters>
+    <app-product-table
+      [products]="products | async"
+      (activeProductId)="setActiveProduct($event)">
+    </app-product-table>
+  </section>
+  <section class="content__right-side">
+    <app-product-details [product]="activeProduct"></app-product-details>
+  </section>
+  <app-spinner></app-spinner>
+</div>
