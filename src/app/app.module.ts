@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { ProductFiltersComponent } from './features/product-filters/product-filters.component';
 import { ProductTableComponent } from './features/product-table/product-table.component';
 import { ProductDetailsComponent } from './features/product-details/product-details.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ProductDetailsComponent } from './features/product-details/product-deta
     ProductDetailsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

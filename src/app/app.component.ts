@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'table';
+  search$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
+  constructor() {
+  }
+
+  get searchStream(): Observable<string> {
+    return this.search$.asObservable();
+  }
+
+  search(event) {
+    this.search$.next(event);
+  }
 }
