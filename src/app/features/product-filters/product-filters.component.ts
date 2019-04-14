@@ -1,5 +1,4 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {publish, share} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-filters',

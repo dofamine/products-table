@@ -1,6 +1,6 @@
 <p>table</p>
 <hr>
-<app-product-filters></app-product-filters>
+<app-product-filters (searching)="searchStr($event)"></app-product-filters>
 <ul>
   <li *ngFor="let user of users | async">{{user.name}}</li>
 </ul>

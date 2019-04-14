@@ -1,4 +1,5 @@
 <p>app</p>
 <hr>
 <app-product-filters (searching)="search($event)"></app-product-filters>
-<app-product-table [searchingStream]="searchStream"></app-product-table>
+<app-product-table *ngIf="toogle" [searchingStream]="searchStream"></app-product-table>
+<button (click)="togle()">toggle</button>

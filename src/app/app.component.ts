@@ -8,6 +8,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 })
 export class AppComponent {
   title = 'table';
+  toogle: boolean;
   search$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor() {
@@ -19,5 +20,9 @@ export class AppComponent {
 
   search(event) {
     this.search$.next(event);
+  }
+
+  togle() {
+    this.toogle = !this.toogle;
   }
 }
